@@ -256,9 +256,11 @@ ds_grid_destroy(grid);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>for(var yy = 0; yy &lt; height; yy++){
-    for(var xx = 0; xx &lt; width; xx++){ 
-        draw_text(xx*CELL_WIDTH, yy*CELL_HEIGHT, string(grid[# xx, yy]));
+            <string>if(debug_mode){
+    for(var yy = 0; yy &lt; height; yy++){
+        for(var xx = 0; xx &lt; width; xx++){ 
+            draw_text(xx*CELL_WIDTH, yy*CELL_HEIGHT, string(grid[# xx, yy]));
+        }
     }
 }
 </string>
@@ -266,7 +268,7 @@ ds_grid_destroy(grid);
         </arguments>
       </action>
     </event>
-    <event eventtype="9" enumb="32">
+    <event eventtype="9" enumb="18">
       <action>
         <libid>1</libid>
         <id>603</id>

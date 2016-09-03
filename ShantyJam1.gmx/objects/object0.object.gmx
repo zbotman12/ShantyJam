@@ -3,7 +3,7 @@
   <spriteName>spr_test</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-1</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -75,22 +75,22 @@ if (vsp = 10 &amp;&amp; key_down)
 {grav = 2
 tv = 20}
 
-if (place_meeting(x,y+1,obj_wall))
+if (grid_place_meeting(x,y+1)/*place_meeting(x,y+1,obj_wall)*/)
 { vsp = 0 }
 if (key_jump)
 vsp = -jumpspeed
 
-if (place_meeting(x,y+vsp,obj_wall))
+if (grid_place_meeting(x,y+vsp)/*place_meeting(x,y+vsp,obj_wall)*/)
 {
-    while (!place_meeting(x,y+sign(vsp),obj_wall))
+    while (!grid_place_meeting(x,y+sign(vsp))/*!place_meeting(x,y+sign(vsp),obj_wall)*/)
     {
     y =y+sign(vsp)
     }
 vsp = 0
 }
-if (place_meeting(x+hsp,y,obj_wall))
+if (grid_place_meeting(x+hsp,y)/*place_meeting(x+hsp,y,obj_wall)*/)
 {
-    while (!place_meeting(x+sign(hsp),y,obj_wall))
+    while (!grid_place_meeting(x+sign(hsp),y)/*!place_meeting(x+sign(hsp),y,obj_wall)*/)
     {
     x=x+sign(hsp)
     }

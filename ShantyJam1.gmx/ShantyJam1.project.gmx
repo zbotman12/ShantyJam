@@ -30,7 +30,7 @@
     <object>objects\obj_player</object>
     <object>objects\obj_player_2</object>
     <object>objects\obj_minimap</object>
-	<object>objects\object0</object>
+    <object>objects\object0</object>
     <object>objects\object2</object>
     <object>objects\obj_wall</object>
   </objects>
