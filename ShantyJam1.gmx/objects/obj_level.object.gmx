@@ -27,22 +27,27 @@
             <kind>1</kind>
             <string>/// Create the level
 // Resize
-room_width = (CELL_WIDTH / 16) * 1000;
-room_height = (CELL_HEIGHT / 16) * 1000;
-view_wview[0] = room_width/4;
-view_hview[0] = room_height/8 - 5;
-view_xview[0] = 0;
-view_yview[0] = 0;
-view_hport[0] = room_height/2-5;
-view_wport[0] = room_width;
+window_set_size(1920, 1080);
+room_width = (CELL_WIDTH / 50) * 2000;
+room_height = (CELL_HEIGHT / 50) * 2000;
 
-view_wview[1] = room_width/4;
-view_hview[1] = room_height/8 - 5;
-view_xview[1] = 0;
-view_yview[1] = room_height/2 + 5;
-view_hport[1] = room_height/2 - 5;
-view_wport[1] = room_width;
+view_hport[0] = 1920 - 1920/4;
+view_wport[0] = 1080/2 - 3;
+view_yport[0] = 0//1920/4;
+view_xport[0] = 0;
+view_hview[0] = 1920/4 * 2;
+view_wview[0] = 1080/3 * 2;
+view_hborder[0] = 1920;
+view_vborder[0] = 1080;
 
+view_hport[1] = 1920 - 1920/4;
+view_wport[1] = 1080/2 - 3;
+view_yport[1] = 0//1920/4;
+view_xport[1] = 546;
+view_hview[1] = 1920/4 * 2;
+view_wview[1] = 1080/3 * 2;
+view_hborder[1] = 1920;
+view_vborder[1] = 1080;
 
 // Set the grid width and height
 width = room_width div CELL_WIDTH; //This is whole number division
@@ -59,10 +64,9 @@ randomize();
 // Create the controller in the center of the grid
 var cx = width div 2;
 var cy = height div 2;
-
-//Create the player
-instance_create(cx * CELL_WIDTH + CELL_WIDTH/2, cy * CELL_HEIGHT + CELL_HEIGHT/2, obj_player);
-instance_create(cx * CELL_WIDTH + CELL_WIDTH/2, cy * CELL_HEIGHT + CELL_HEIGHT/2, obj_player_2);
+//Create the players
+instance_create(1 * CELL_WIDTH + CELL_WIDTH/2, cy * CELL_HEIGHT + CELL_HEIGHT/2, obj_rusty);
+instance_create((width - 2) * CELL_WIDTH + CELL_WIDTH/2, cy * CELL_HEIGHT + CELL_HEIGHT/2, obj_crusty);
 
 for(var yy = 1; yy &lt; height - 1; yy++){
     for(var xx = 1; xx &lt; width - 1; xx++){
@@ -263,6 +267,29 @@ ds_grid_destroy(grid);
         }
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="27">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>game_end();
 </string>
           </argument>
         </arguments>

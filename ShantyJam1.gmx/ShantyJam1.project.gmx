@@ -11,6 +11,8 @@
     <sprite>sprites\sprite2</sprite>
     <sprite>sprites\spr_player</sprite>
     <sprite>sprites\spr_enemy</sprite>
+    <sprite>sprites\spr_rusty_stand</sprite>
+    <sprite>sprites\spr_crusty</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_floor</background>
@@ -27,10 +29,9 @@
   </scripts>
   <objects name="objects">
     <object>objects\obj_level</object>
-    <object>objects\obj_player</object>
-    <object>objects\obj_player_2</object>
     <object>objects\obj_minimap</object>
-    <object>objects\object0</object>
+    <object>objects\obj_rusty</object>
+    <object>objects\obj_crusty</object>
     <object>objects\object2</object>
     <object>objects\obj_wall</object>
   </objects>
