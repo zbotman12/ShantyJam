@@ -9,16 +9,33 @@
     <sprite>sprites\spr_test</sprite>
     <sprite>sprites\sprite1</sprite>
     <sprite>sprites\sprite2</sprite>
+    <sprite>sprites\spr_player</sprite>
+    <sprite>sprites\spr_enemy</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\bg_floor</background>
+    <background>background\bg_wall</background>
+    <background>background\bg_walltiles</background>
+  </backgrounds>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <script>scripts\scr_move.gml</script>
+    <script>scripts\grid_place_meeting.gml</script>
+    <script>scripts\get_path_to_player.gml</script>
+    <script>scripts\scr_smooth_map.gml</script>
+    <script>scripts\scr_flood_fill.gml</script>
+  </scripts>
   <objects name="objects">
-    <object>objects\object0</object>
+    <object>objects\obj_level</object>
+    <object>objects\obj_player</object>
+    <object>objects\obj_player_2</object>
+    <object>objects\obj_minimap</object>
+	<object>objects\object0</object>
     <object>objects\object2</object>
     <object>objects\obj_wall</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\TestRoom</room>
+    <room>rooms\room0</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
