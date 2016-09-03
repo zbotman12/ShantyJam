@@ -39,6 +39,7 @@ key_jump = 0;
 key_down = 0;
 key_shift = 0;
 key_down_release = 0;
+grounded = false;
 </string>
           </argument>
         </arguments>
@@ -102,9 +103,20 @@ if (vsp = 10 &amp;&amp; key_down)
 tv = 15}
 
 if (grid_place_meeting(x,y+1)/*place_meeting(x,y+1,obj_wall)*/)
-{ vsp = 0 }
+{
+    vsp = 0;
+    grounded = true;
+}else{
+    grounded = false;
+}
+
 if (key_jump)
-vsp = -jumpspeed
+{
+    vsp = -jumpspeed;
+}
+
+
+
 
 if (grid_place_meeting(x,y+vsp)/*place_meeting(x,y+vsp,obj_wall)*/)
 {
