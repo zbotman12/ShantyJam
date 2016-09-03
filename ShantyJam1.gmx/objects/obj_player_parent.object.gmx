@@ -66,28 +66,32 @@ key_down_release = 0;
 if(key_shift)
 {
     if(grid_place_meeting(x,y+1)){
-        ds_list_find_index(global.rustyTileList, global.grid[# x/CELL_WIDTH,(y+1)/CELL_HEIGHT]);
+        var index = ds_list_find_index(global.rustyTileList, global.grid[# x/CELL_WIDTH,(y+1)/CELL_HEIGHT]);
     }
-    if(grid_place_meeting(x,y+1)){
-    
+    if(grid_place_meeting(x+1,y)){
+       var index = ds_list_find_index(global.rustyTileList, global.grid[# (x+1)/CELL_WIDTH,y/CELL_HEIGHT]);
     }
-    if(grid_place_meeting(x,y+1)){
-    
+    if(grid_place_meeting(x,y-1)){
+        var index = ds_list_find_index(global.rustyTileList, global.grid[# x/CELL_WIDTH,(y-1)/CELL_HEIGHT]);
     }
-    if(grid_place_meeting(x,y+1)){
-    
+    if(grid_place_meeting(x-1,y)){
+        var index = ds_list_find_index(global.rustyTileList, global.grid[# (x-1)/CELL_WIDTH,y/CELL_HEIGHT]);
     }
     if(grid_place_meeting(x+1,y+1)){
-    
+        var index = ds_list_find_index(global.rustyTileList, global.grid[# (x+1)/CELL_WIDTH,(y+1)/CELL_HEIGHT]);
     }
     if(grid_place_meeting(x-1,y+1)){
-    
+        var index = ds_list_find_index(global.rustyTileList, global.grid[# (x-1)/CELL_WIDTH,(y+1)/CELL_HEIGHT]);
     }
     if(grid_place_meeting(x+1,y-1)){
-    
+        var index = ds_list_find_index(global.rustyTileList, global.grid[# (x+1)/CELL_WIDTH,(y-1)/CELL_HEIGHT]);
     }
     if(grid_place_meeting(x-1,y-1)){
-    
+        var index = ds_list_find_index(global.rustyTileList, global.grid[# (x-1)/CELL_WIDTH,(y-1)/CELL_HEIGHT]);
+        var rustLevel = ds_list_find_value(global.rustyTileList, index + 1);
+        if(rustLevel &lt; CLEAN){
+            rustLevel++;
+        }
     }
 }
 
