@@ -17,7 +17,10 @@
   <backgrounds name="background">
     <background>background\bg_floor</background>
     <background>background\bg_wall</background>
-    <background>background\bg_rustyWalls</background>
+    <background>background\bg_rust2</background>
+    <background>background\bg_rust1</background>
+    <background>background\bg_clean</background>
+    <background>background\bg_rust3</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">

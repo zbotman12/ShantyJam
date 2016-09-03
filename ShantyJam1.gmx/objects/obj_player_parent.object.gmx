@@ -65,33 +65,23 @@ key_down_release = 0;
 
 if(key_shift)
 {
-    if(grid_place_meeting(x,y+1)){
-        var index = ds_list_find_index(global.rustyTileList, global.grid[# x/CELL_WIDTH,(y+1)/CELL_HEIGHT]);
-    }
-    if(grid_place_meeting(x+1,y)){
-       var index = ds_list_find_index(global.rustyTileList, global.grid[# (x+1)/CELL_WIDTH,y/CELL_HEIGHT]);
-    }
-    if(grid_place_meeting(x,y-1)){
-        var index = ds_list_find_index(global.rustyTileList, global.grid[# x/CELL_WIDTH,(y-1)/CELL_HEIGHT]);
-    }
-    if(grid_place_meeting(x-1,y)){
-        var index = ds_list_find_index(global.rustyTileList, global.grid[# (x-1)/CELL_WIDTH,y/CELL_HEIGHT]);
-    }
-    if(grid_place_meeting(x+1,y+1)){
-        var index = ds_list_find_index(global.rustyTileList, global.grid[# (x+1)/CELL_WIDTH,(y+1)/CELL_HEIGHT]);
-    }
-    if(grid_place_meeting(x-1,y+1)){
-        var index = ds_list_find_index(global.rustyTileList, global.grid[# (x-1)/CELL_WIDTH,(y+1)/CELL_HEIGHT]);
-    }
-    if(grid_place_meeting(x+1,y-1)){
-        var index = ds_list_find_index(global.rustyTileList, global.grid[# (x+1)/CELL_WIDTH,(y-1)/CELL_HEIGHT]);
-    }
-    if(grid_place_meeting(x-1,y-1)){
-        var index = ds_list_find_index(global.rustyTileList, global.grid[# (x-1)/CELL_WIDTH,(y-1)/CELL_HEIGHT]);
-        var rustLevel = ds_list_find_value(global.rustyTileList, index + 1);
-        if(rustLevel &lt; CLEAN){
-            rustLevel++;
-        }
+    playerGridX = x/CELL_WIDTH;
+    playerGridY = y/CELL_WIDTH;
+    for(var xx = -1; xx &lt;= 1; xx++){
+       for(var yy = -1; yy &lt;= 1; yy++){
+            if(tile_exists(global.grid[# playerGridX + xx, playerGridY + yy]))
+            {
+                var bg = 0;
+                switch(tile_get_background(global.grid[# playerGridX + xx, playerGridY + yy]))
+                {
+                    case bg_rust1: bg = bg_clean; break;
+                    case bg_rust2: bg = bg_rust1; break;
+                    case bg_rust3: bg = bg_rust2; break;
+                    default: bg = bg_clean; break;
+                }
+                tile_set_background(global.grid[# playerGridX + xx, playerGridY + yy],bg);
+            }
+       }
     }
 }
 

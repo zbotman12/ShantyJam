@@ -96,18 +96,27 @@ for(var yy = 1; yy &lt; height - 1; yy++){
     }
 }
 
-global.rustyTileList = ds_list_create();
-
 //Draw the level using the global.grid
 for(var yy = 0; yy &lt; height; yy++){
     for(var xx = 0; xx &lt; width; xx++){
         if( global.grid[# xx, yy] == FLOOR)
         {
             tile_add(bg_floor, 0,0, CELL_WIDTH,CELL_HEIGHT, xx * CELL_WIDTH, yy * CELL_HEIGHT, 0);
+            global.grid[# xx, yy] = noone;
         }else if (global.grid[# xx, yy] == WALL)
         {
             var rustLevel = irandom(3);
-            ds_list_add(global.rustyTileList, tile_add(bg_rustyWalls, CELL_WIDTH * rustLevel,0, CELL_WIDTH,CELL_HEIGHT, xx * CELL_WIDTH, yy * CELL_HEIGHT, 0), rustLevel);
+            var bg = 0;
+            switch(rustLevel)
+            {
+                case 0: bg = bg_clean; break;
+                case 1: bg = bg_rust1; break;
+                case 2: bg = bg_rust2; break;
+                case 3: bg = bg_rust3; break;
+            }
+            global.grid[# xx, yy] = tile_add(bg, 0, 0, CELL_WIDTH,CELL_HEIGHT, xx * CELL_WIDTH, yy * CELL_HEIGHT, 0);
+        }else{
+            global.grid[# xx, yy] = noone;
         }
     }
 }
@@ -160,7 +169,7 @@ ds_grid_destroy(global.grid);
             <string>if(debug_mode){
     for(var yy = 0; yy &lt; height; yy++){
         for(var xx = 0; xx &lt; width; xx++){ 
-            draw_text(xx*CELL_WIDTH, yy*CELL_HEIGHT, string(grid[# xx, yy]));
+            draw_text(xx*CELL_WIDTH, yy*CELL_HEIGHT, string(global.grid[# xx, yy]));
         }
     }
 }

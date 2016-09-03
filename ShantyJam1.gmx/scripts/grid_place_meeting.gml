@@ -11,11 +11,11 @@ x = xx;
 y = yy;
 
 // Check for an x meeting
-var x_meeting = (global.grid[# bbox_right /*right side X value*/ div CELL_WIDTH, bbox_top /*top side Y value*/ div CELL_HEIGHT] != FLOOR) || 
-                (global.grid[# bbox_left div CELL_WIDTH, bbox_top div CELL_HEIGHT] != FLOOR);
-var y_meeting = (global.grid[# bbox_right div CELL_WIDTH, bbox_bottom div CELL_HEIGHT] != FLOOR) || 
-                (global.grid[# bbox_left div CELL_WIDTH, bbox_bottom div CELL_HEIGHT] != FLOOR);
-var center_meeting = (global.grid[# xx div CELL_WIDTH, yy div CELL_HEIGHT] != FLOOR);
+var x_meeting = (global.grid[# bbox_right /*right side X value*/ div CELL_WIDTH, bbox_top /*top side Y value*/ div CELL_HEIGHT] != noone) || 
+                (global.grid[# bbox_left div CELL_WIDTH, bbox_top div CELL_HEIGHT] != noone);
+var y_meeting = (global.grid[# bbox_right div CELL_WIDTH, bbox_bottom div CELL_HEIGHT] != noone) || 
+                (global.grid[# bbox_left div CELL_WIDTH, bbox_bottom div CELL_HEIGHT] != noone);
+var center_meeting = (global.grid[# xx div CELL_WIDTH, yy div CELL_HEIGHT] != noone);
 
 //Move Back
 x = xp;
