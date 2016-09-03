@@ -8,12 +8,14 @@
   <sprites name="sprites">
     <sprite>sprites\spr_test</sprite>
     <sprite>sprites\sprite1</sprite>
+    <sprite>sprites\sprite2</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
-  <shaders name="shaders"/>
   <objects name="objects">
     <object>objects\object0</object>
+    <object>objects\object2</object>
+    <object>objects\obj_wall</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\TestRoom</room>
