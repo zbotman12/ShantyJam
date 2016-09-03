@@ -33,7 +33,7 @@ room_height = (CELL_HEIGHT / 50) * 2000;
 
 view_hport[0] = 1920 - 1920/4;
 view_wport[0] = 1080/2 - 3;
-view_yport[0] = 0//1920/4;
+view_yport[0] = 0
 view_xport[0] = 0;
 view_hview[0] = 1920/4 * 2;
 view_wview[0] = 1080/3 * 2;
@@ -42,39 +42,36 @@ view_vborder[0] = 1080;
 
 view_hport[1] = 1920 - 1920/4;
 view_wport[1] = 1080/2 - 3;
-view_yport[1] = 0//1920/4;
+view_yport[1] = 0;
 view_xport[1] = 546;
 view_hview[1] = 1920/4 * 2;
 view_wview[1] = 1080/3 * 2;
 view_hborder[1] = 1920;
 view_vborder[1] = 1080;
 
-// Set the grid width and height
+// Set the global.grid width and height
 width = room_width div CELL_WIDTH; //This is whole number division
 height = room_height div CELL_HEIGHT;
 
-// Create the grid
-grid = ds_grid_create(width, height);
+// Create the global.grid
+global.grid = ds_grid_create(width, height);
 
-// Fill the grid with VOID
-ds_grid_set_region(grid, 0, 0, width - 1, height - 1, VOID); //indices work like an array
+// Fill the global.grid with VOID
+ds_grid_set_region(global.grid, 0, 0, width - 1, height - 1, VOID); //indices work like an array
 
 randomize();
 
-// Create the controller in the center of the grid
-var cx = width div 2;
-var cy = height div 2;
 //Create the players
-instance_create(1 * CELL_WIDTH + CELL_WIDTH/2, cy * CELL_HEIGHT + CELL_HEIGHT/2, obj_rusty);
-instance_create((width - 2) * CELL_WIDTH + CELL_WIDTH/2, cy * CELL_HEIGHT + CELL_HEIGHT/2, obj_crusty);
+instance_create(1 * CELL_WIDTH + CELL_WIDTH/2, height/2 * CELL_HEIGHT + CELL_HEIGHT/2, obj_rusty);
+instance_create((width - 2) * CELL_WIDTH + CELL_WIDTH/2, height/2 * CELL_HEIGHT + CELL_HEIGHT/2, obj_crusty);
 
 for(var yy = 1; yy &lt; height - 1; yy++){
     for(var xx = 1; xx &lt; width - 1; xx++){
         if(irandom(100) &lt;= 45){
-            grid[# xx,yy] = FLOOR;
+            global.grid[# xx,yy] = FLOOR;
         }
         if(yy &lt;= height/2 + 2 &amp;&amp; yy &gt;= height/2 - 2){
-            grid[# xx,yy] = FLOOR;
+            global.grid[# xx,yy] = FLOOR;
         }
     }
 }
@@ -85,135 +82,35 @@ scr_smooth_map(4);
 
 for(var yy = 1; yy &lt; height - 1; yy++){
     for(var xx = 1; xx &lt; width - 1; xx++){
-        if( grid[# xx, yy] == FLOOR)
+        if( global.grid[# xx, yy] == FLOOR)
         {
             //Check for walls
-            if(grid[# xx+1, yy] != FLOOR) grid[# xx+1, yy] = WALL;
-            if(grid[# xx-1, yy] != FLOOR) grid[# xx-1, yy] = WALL;
-            if(grid[# xx, yy+1] != FLOOR) grid[# xx, yy+1] = WALL;
-            if(grid[# xx, yy-1] != FLOOR) grid[# xx, yy-1] = WALL;
+            if(global.grid[# xx+1, yy] != FLOOR) global.grid[# xx+1, yy] = WALL;
+            if(global.grid[# xx-1, yy] != FLOOR) global.grid[# xx-1, yy] = WALL;
+            if(global.grid[# xx, yy+1] != FLOOR) global.grid[# xx, yy+1] = WALL;
+            if(global.grid[# xx, yy-1] != FLOOR) global.grid[# xx, yy-1] = WALL;
         }
-        
-        if(grid[# xx, yy] == WALL &amp;&amp; grid[# xx+1, yy] == FLOOR &amp;&amp; grid[# xx-1, yy] == FLOOR &amp;&amp; grid[# xx, yy+1] == FLOOR &amp;&amp; grid[# xx, yy-1] == FLOOR){
-            grid[# xx, yy] = FLOOR;
+        if(global.grid[# xx, yy] == WALL &amp;&amp; global.grid[# xx+1, yy] == FLOOR &amp;&amp; global.grid[# xx-1, yy] == FLOOR &amp;&amp; global.grid[# xx, yy+1] == FLOOR &amp;&amp; global.grid[# xx, yy-1] == FLOOR){
+            global.grid[# xx, yy] = FLOOR;
         } 
     }
 }
 
-//Draw the level using the grid
+global.rustyTileList = ds_list_create();
+
+//Draw the level using the global.grid
 for(var yy = 0; yy &lt; height; yy++){
     for(var xx = 0; xx &lt; width; xx++){
-        if( grid[# xx, yy] == FLOOR)
+        if( global.grid[# xx, yy] == FLOOR)
         {
             tile_add(bg_floor, 0,0, CELL_WIDTH,CELL_HEIGHT, xx * CELL_WIDTH, yy * CELL_HEIGHT, 0);
+        }else if (global.grid[# xx, yy] == WALL)
+        {
+            var rustLevel = irandom(3);
+            ds_list_add(global.rustyTileList, tile_add(bg_rustyWalls, CELL_WIDTH * rustLevel,0, CELL_WIDTH,CELL_HEIGHT, xx * CELL_WIDTH, yy * CELL_HEIGHT, 0), rustLevel);
         }
     }
 }
-
-//Get tile sizes
-var tw = CELL_WIDTH/2;
-var th = CELL_HEIGHT/2;
-
-//Add the tiles
-for (var yy = 0; yy &lt; height*2; yy++)
-{
-    for (var xx = 0; xx &lt; width*2; xx++)
-    {
-        if(grid[# xx div 2, yy div 2] == FLOOR){
-            //Get the tile's x and y position
-            var tx = xx*tw;
-            var ty = yy*th;
-            
-            var right = grid[# (xx + 1) div 2, yy div 2] != FLOOR;
-            var left = grid[# (xx - 1) div 2, yy div 2] != FLOOR;
-            var top = grid[# xx div 2, (yy - 1) div 2] != FLOOR;
-            var bottom = grid[# xx div 2, (yy + 1) div 2] != FLOOR;
-            
-            var topright = grid[# (xx + 1) div 2, (yy - 1) div 2] != FLOOR;
-            var topleft = grid[# (xx - 1) div 2, (yy - 1) div 2] != FLOOR;
-            var bottomright = grid[# (xx + 1) div 2, (yy + 1) div 2] != FLOOR;
-            var bottomleft = grid[# (xx - 1) div 2, (yy + 1) div 2] != FLOOR;
-            
-            if(right)
-            {
-                if(bottom)
-                {
-                    tile_add(bg_walltiles,tw * 4, th * 1, tw, th, tx + tw, ty, -ty);
-                }
-                else if (top)
-                {
-                    if(topright)
-                    {
-                        tile_add(bg_walltiles,tw * 4, th * 0, tw, th, tx + tw, ty - th, -ty);
-                    }else{
-                        tile_add(bg_walltiles,tw * 3, th * 0, tw, th, tx, ty - th, -ty);
-                    }
-                    tile_add(bg_walltiles,tw * 0, th * 1, tw, th, tx + tw, ty, -ty); 
-                }else{
-                    tile_add(bg_walltiles,tw * 0, th * 1, tw, th, tx + tw, ty, -ty);
-                }
-            }
-            
-            if (left){
-                if(bottom)
-                {
-                    tile_add(bg_walltiles,tw * 3, th * 1, tw, th, tx - tw, ty, -ty);
-                }
-                else if(top)
-                {
-                    if(topleft)
-                    {
-                        tile_add(bg_walltiles,tw * 3, th * 0, tw, th, tx - tw, ty - th, -ty);
-                    }
-                    else
-                    {
-                        tile_add(bg_walltiles,tw * 4, th * 0, tw, th, tx, ty - th, -ty);
-                    }
-                    tile_add(bg_walltiles,tw * 2, th * 1, tw, th, tx - tw, ty, -ty);
-                }
-                else
-                {
-                tile_add(bg_walltiles,tw * 2, th * 1, tw, th, tx - tw, ty, -ty);
-                }
-            }  
-            
-            if(top)
-            {
-                if(!topright)
-                {
-                    tile_add(bg_walltiles,tw * 2, th * 2, tw, th, tx, ty - th, -ty);
-                }
-                else if (!topleft)
-                {
-                    tile_add(bg_walltiles,tw * 0, th * 2, tw, th, tx, ty - th, -ty);
-                }
-                else
-                {
-                    tile_add(bg_walltiles,tw * 1, th * 2, tw, th, tx, ty - th, -ty);
-                }
-            }    
-            
-            if(bottom)
-            {
-                if(!bottomright)
-                {
-                    tile_add(bg_walltiles,tw * 2, th * 0, tw, th, tx, ty, -ty - tw);
-                }
-                else if (!bottomleft)
-                {
-                    tile_add(bg_walltiles,tw * 0, th * 0, tw, th, tx, ty, -ty - tw);
-                }
-                else
-                {
-                    tile_add(bg_walltiles,tw * 1, th * 0, tw, th, tx, ty, -ty - tw);
-                } 
-            }
-        }
-    }
-}
-
-
-
 </string>
           </argument>
         </arguments>
@@ -237,7 +134,7 @@ for (var yy = 0; yy &lt; height*2; yy++)
           <argument>
             <kind>1</kind>
             <string>///Destroy the grids
-ds_grid_destroy(grid);
+ds_grid_destroy(global.grid);
 </string>
           </argument>
         </arguments>

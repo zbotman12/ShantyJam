@@ -17,7 +17,7 @@
   <backgrounds name="background">
     <background>background\bg_floor</background>
     <background>background\bg_wall</background>
-    <background>background\bg_walltiles</background>
+    <background>background\bg_rustyWalls</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -31,6 +31,7 @@
     <object>objects\obj_level</object>
     <object>objects\obj_minimap</object>
     <object>objects\obj_rusty</object>
+    <object>objects\obj_player_parent</object>
     <object>objects\obj_crusty</object>
     <object>objects\object2</object>
     <object>objects\obj_wall</object>
