@@ -40,6 +40,7 @@ key_down = 0;
 key_shift = 0;
 key_down_release = 0;
 grounded = false;
+points = 0
 </string>
           </argument>
         </arguments>
@@ -75,9 +76,15 @@ if(key_shift)
                 var bg = 0;
                 switch(tile_get_background(global.grid[# playerGridX + xx, playerGridY + yy]))
                 {
-                    case bg_rust1: bg = bg_clean; break;
-                    case bg_rust2: bg = bg_rust1; break;
-                    case bg_rust3: bg = bg_rust2; break;
+                    case bg_rust1:{ bg = bg_clean;
+                    if object_index ==(obj_rusty) points += 1
+                    if object_index ==(obj_crusty) points += 1} break;
+                    case bg_rust2:{ bg = bg_rust1;
+                    if object_index ==(obj_rusty) points += 1
+                    if object_index ==(obj_crusty) points += 1} break;
+                    case bg_rust3:{ bg = bg_rust2;
+                    if object_index ==(obj_rusty) points += 1
+                    if object_index ==(obj_crusty) points += 1} break;
                     default: bg = bg_clean; break;
                 }
                 tile_set_background(global.grid[# playerGridX + xx, playerGridY + yy],bg);
