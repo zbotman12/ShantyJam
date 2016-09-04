@@ -37,6 +37,9 @@
     <script>scripts\scr_smooth_map.gml</script>
     <script>scripts\scr_flood_fill.gml</script>
   </scripts>
+  <fonts name="fonts">
+    <font>fonts\score_font</font>
+  </fonts>
   <objects name="objects">
     <object>objects\obj_level</object>
     <object>objects\obj_minimap</object>
