@@ -26,8 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>menu[0] = "PLAY AGAIN";
-menu[1] = "CREDITS";
-menu[2] = "QUIT";
+menu[1] = "QUIT";
 
 space = 65;
 mpos = 0;
@@ -150,6 +149,7 @@ move += max(keyboard_check_pressed(vk_down),keyboard_check_pressed(ord("S")), do
 
 if (move != 0)
 {
+    audio_play_sound(snd_dink, 0, 0);
     mpos += move;
     if (mpos &lt; 0) mpos = array_length_1d(menu) - 1;
     if (mpos &gt; array_length_1d(menu) -1) mpos = 0;
@@ -161,7 +161,7 @@ if (push == 1){
     if(mpos == 0){
         audio_play_sound(kabukiYoo, 0, 0);
     }
-    scr_menu();
+    scr_menu_new();
 }
 delayTimer++;
 if(delayTimer &gt;= delayTime || arrowUpRelease || arrowDownRelease){

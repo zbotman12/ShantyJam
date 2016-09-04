@@ -11,6 +11,7 @@
     <sound>sound\kabukiYoo</sound>
     <sound>sound\titleTheme</sound>
     <sound>sound\snd_rust</sound>
+    <sound>sound\snd_dink</sound>
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\spr_test</sprite>
@@ -46,18 +47,22 @@
     <background>background\background12</background>
     <background>background\background13</background>
     <background>background\background14</background>
+    <background>background\background15</background>
+    <background>background\background16</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\get_input.gml</script>
     <script>scripts\grid_place_meeting.gml</script>
     <script>scripts\scr_menu.gml</script>
+    <script>scripts\scr_menu_new.gml</script>
     <script>scripts\scr_move.gml</script>
     <script>scripts\scr_smooth_map.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font1</font>
     <font>fonts\score_font</font>
+    <font>fonts\font2</font>
   </fonts>
   <objects name="objects">
     <object>objects\obj_crusty</object>
@@ -71,12 +76,15 @@
     <object>objects\obj_soundManager</object>
     <object>objects\obj_timer</object>
     <object>objects\obj_wall</object>
+    <object>objects\obj_goback</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room1</room>
     <room>rooms\room0</room>
     <room>rooms\crusty</room>
     <room>rooms\rusty</room>
+    <room>rooms\controls</room>
+    <room>rooms\credits</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
