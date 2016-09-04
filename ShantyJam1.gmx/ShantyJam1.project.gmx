@@ -10,6 +10,7 @@
     <sound>sound\snd_bg_music</sound>
     <sound>sound\kabukiYoo</sound>
     <sound>sound\titleTheme</sound>
+    <sound>sound\snd_rust</sound>
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\spr_test</sprite>
@@ -27,6 +28,7 @@
     <sprite>sprites\spr_mag</sprite>
     <sprite>sprites\spr_crusty_drop</sprite>
     <sprite>sprites\spr_rusty_drop</sprite>
+    <sprite>sprites\sprite15</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_floor</background>

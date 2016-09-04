@@ -56,6 +56,7 @@ view_hview[2] = room_height;
 view_wview[2] = room_width/4;
 view_hborder[2] = 1920;
 view_vborder[2] = 1080;
+streaming = false;
 
 // Set the global.grid width and height
 width = room_width div CELL_WIDTH; //This is whole number division
@@ -155,8 +156,9 @@ for(var yy = 0; yy &lt; height; yy++){
     view_object[2] = obj_rusty;
 }else if(obj_rusty.points &lt; obj_crusty.points){
     view_object[2] = obj_crusty;
-}else{
 }
+
+
 </string>
           </argument>
         </arguments>
