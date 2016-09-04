@@ -53,6 +53,7 @@
   <instances>
     <instance objName="obj_level" x="32" y="96" name="inst_321B5BF8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_soundManager" x="112" y="64" name="inst_86BF6498" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_timer" x="352" y="240" name="inst_ED8577CF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
