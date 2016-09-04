@@ -2,7 +2,7 @@ switch (mpos)
 {
     case 0:
     {   
-        room_goto(room0);
+        goToLevel = true;
         break;
     }
     case 1: 

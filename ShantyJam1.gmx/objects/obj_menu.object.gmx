@@ -32,6 +32,8 @@ menu[2] = "QUIT";
 space = 65;
 mpos = 0;
 
+goToLevel = false;
+
 right = false;
 left = false;
 up = false;
@@ -114,12 +116,20 @@ if (move != 0)
 }
 
 var push;
-push = max(keyboard_check_released(vk_enter),keyboard_check_released(vk_shift),keyboard_check_released(vk_space), leftClick, pauseButton, 0); 
-if (push == 1) scr_menu();
-
+push = max(keyboard_check_released(vk_enter),keyboard_check_released(vk_shift),keyboard_check_released(vk_space), leftClick, 0); 
+if (push == 1){
+    if(mpos == 0){
+        audio_play_sound(kabukiYoo, 0, 0);
+    }
+    scr_menu();
+}
 delayTimer++;
 if(delayTimer &gt;= delayTime || arrowUpRelease || arrowDownRelease){
     delayTimer = 0;
+}
+
+if(goToLevel &amp;&amp; !audio_is_playing(kabukiYoo)){
+    room_goto(room0);
 }
 </string>
           </argument>
@@ -151,12 +161,13 @@ draw_set_color(c_red);
 var m;
 for (m =0; m &lt; array_length_1d(menu); m += 1)
 {
-    if(menu[m] == "Continue" &amp;&amp; !file_exists(global.containerSavefname)){
-        draw_set_alpha(0.3);
+    if(mpos == m){
+        draw_set_color(c_white);
+        draw_text_transformed(x + space, y +(m * space),string(menu[m]), 1.5, 1.5, 15)
     }else{
-        draw_set_alpha(1);
+        draw_set_color(c_red);
+        draw_text(x + space, y +(m * space),string(menu[m]))
     }
-    draw_text(x + space, y +(m * space),string(menu[m]))
 }
 
 draw_sprite(sprite_index, 0, x + 16, y + mpos * space);

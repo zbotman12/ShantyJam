@@ -46,6 +46,7 @@
   </scripts>
   <fonts name="fonts">
     <font>fonts\score_font</font>
+    <font>fonts\font1</font>
   </fonts>
   <objects name="objects">
     <object>objects\obj_level</object>
@@ -54,6 +55,7 @@
     <object>objects\obj_player_parent</object>
     <object>objects\obj_crusty</object>
     <object>objects\obj_soundManager</object>
+    <object>objects\obj_menu_sound</object>
     <object>objects\obj_wall</object>
     <object>objects\obj_menu</object>
     <object>objects\obj_timer</object>
