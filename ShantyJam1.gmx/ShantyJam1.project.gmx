@@ -49,6 +49,7 @@
     <object>objects\obj_crusty</object>
     <object>objects\obj_soundManager</object>
     <object>objects\obj_wall</object>
+    <object>objects\obj_timer</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
