@@ -21,6 +21,7 @@
     <sprite>sprites\spr_crusty_run</sprite>
     <sprite>sprites\spr_crusty_fly</sprite>
     <sprite>sprites\spr_rusty_fly</sprite>
+    <sprite>sprites\spr_player_mask</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_floor</background>

@@ -41,6 +41,7 @@ key_shift = 0;
 key_down_release = 0;
 grounded = false;
 points = 0
+mask_index = spr_player_mask;
 </string>
           </argument>
         </arguments>
