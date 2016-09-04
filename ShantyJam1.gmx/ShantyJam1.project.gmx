@@ -24,6 +24,9 @@
     <sprite>sprites\spr_crusty_fly</sprite>
     <sprite>sprites\spr_rusty_fly</sprite>
     <sprite>sprites\spr_player_mask</sprite>
+    <sprite>sprites\spr_mag</sprite>
+    <sprite>sprites\spr_crusty_drop</sprite>
+    <sprite>sprites\spr_rusty_drop</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_floor</background>
@@ -34,35 +37,44 @@
     <background>background\background5</background>
     <background>background\background6</background>
     <background>background\background7</background>
+    <background>background\background8</background>
+    <background>background\background9</background>
+    <background>background\background10</background>
+    <background>background\background11</background>
+    <background>background\background12</background>
+    <background>background\background13</background>
+    <background>background\background14</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
-    <script>scripts\scr_move.gml</script>
-    <script>scripts\grid_place_meeting.gml</script>
-    <script>scripts\get_path_to_player.gml</script>
-    <script>scripts\scr_smooth_map.gml</script>
-    <script>scripts\scr_menu.gml</script>
     <script>scripts\get_input.gml</script>
+    <script>scripts\grid_place_meeting.gml</script>
+    <script>scripts\scr_menu.gml</script>
+    <script>scripts\scr_move.gml</script>
+    <script>scripts\scr_smooth_map.gml</script>
   </scripts>
   <fonts name="fonts">
-    <font>fonts\score_font</font>
     <font>fonts\font1</font>
+    <font>fonts\score_font</font>
   </fonts>
   <objects name="objects">
-    <object>objects\obj_level</object>
-    <object>objects\obj_minimap</object>
-    <object>objects\obj_rusty</object>
-    <object>objects\obj_player_parent</object>
     <object>objects\obj_crusty</object>
-    <object>objects\obj_soundManager</object>
-    <object>objects\obj_menu_sound</object>
-    <object>objects\obj_wall</object>
+    <object>objects\obj_endmenu</object>
+    <object>objects\obj_level</object>
     <object>objects\obj_menu</object>
+    <object>objects\obj_menu_sound</object>
+    <object>objects\obj_overtime</object>
+    <object>objects\obj_player_parent</object>
+    <object>objects\obj_rusty</object>
+    <object>objects\obj_soundManager</object>
     <object>objects\obj_timer</object>
+    <object>objects\obj_wall</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room1</room>
     <room>rooms\room0</room>
+    <room>rooms\crusty</room>
+    <room>rooms\rusty</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

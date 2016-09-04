@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-11</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,21 +25,26 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(global.overtime_mode){
-Time = (60*60)/2;
-}else{
-Time = 60*60;
-}
-showTime = 0;
+            <string>application_surface_draw_enable(false);
+global.view0Surf = noone;
+global.view1Surf = noone;
+global.view2Surf = noone;
 
-angle = 0;
-goDown = false;
+scale = 2;
+global.roomSurface = surface_create(room_width, room_height);
+magSurf = surface_create(300, 300);
+surface_set_target(global.roomSurface);
+draw_clear_alpha(c_white,0);
+surface_reset_target();
+surface_set_target(magSurf);
+draw_clear_alpha(c_white,0);
+surface_reset_target();
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
+    <event eventtype="8" enumb="64">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -56,38 +61,9 @@ goDown = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>Time=Time-1
-showTime = floor(Time/60)
-if (showTime == 0)
-{
-    if(obj_rusty.points &gt; obj_crusty.points)
-    {
-        global.overtime_mode = false;
-        room_goto(rusty);
-    }
-    else if(obj_rusty.points &lt; obj_crusty.points)
-    {
-        global.overtime_mode = false;
-        room_goto(crusty);
-    }else{
-        global.overtime_mode = true;
-        room_restart();
-    }
-}
-
-if(angle == 10)
-{
-    goDown = true;
-}else if(angle == -10){
-    goDown = false;
-}
-
-if(goDown){
-    angle--;
-}else{
-    angle++;
-}
-
+            <string>shader_set(shader_0)
+draw_surface(application_surface, 0, 0);
+shader_reset();
 </string>
           </argument>
         </arguments>
@@ -110,46 +86,31 @@ if(goDown){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_halign(fa_center);
-draw_set_color(c_blue);
-draw_set_font(font1);
-if(view_current == 2 &amp;&amp; !global.overtime_mode)
-{
-    draw_set_alpha(0.6);
-    draw_rectangle_colour(
-                            0, 
-                            0, 
-                            room_width,
-                            room_height,
-                            c_orange,
-                            c_red,
-                            c_orange,
-                            c_red,
-                            false);
-    draw_set_alpha(1);
-    draw_text_transformed(view_xview[2] + 550,view_yview[2]+room_width/2 - 400,string(floor(showTime/10)), 5, 5, 0);
-    draw_text_transformed(view_xview[2] + 550,view_yview[2]+room_width/2 + 400,string(showTime - floor(showTime/10)* 10), 5, 5, 0);
-}else if (view_current == 2 &amp;&amp; global.overtime_mode){
-    {
-    draw_set_color(c_orange);
-    draw_set_font(font1);
-    draw_set_alpha(0.6);
-    draw_rectangle_colour(
-                            0, 
-                            0, 
-                            room_width,
-                            room_height,
-                            c_blue,
-                            c_green,
-                            c_aqua,
-                            c_teal,
-                            false);
-    draw_set_alpha(1);
-    draw_text_transformed(view_xview[2] + 550,view_yview[2]+room_width/2 - 400,string(floor(showTime/10)), 5 + (((30 - showTime)/30) * 3), 5 + (((30 - showTime)/30) * 3), angle);
-    draw_text_transformed(view_xview[2] + 550,view_yview[2]+room_width/2 + 400,string(showTime - floor(showTime/10)* 10), 5 + (((30 - showTime)/30) * 3), 5 + (((30 - showTime)/30) * 3), angle);
+            <string>surface_set_target(global.roomSurface);
+    for(var i = 0; i &lt; array_length_1d(background_index); i++){
+        draw_background(background_index[i], 0, 0);
     }
-}
-draw_set_halign(fa_left);
+    if(surface_exists(global.view0Surf))draw_surface(global.view0Surf, view_xview[0], view_yview[0]);
+    if(surface_exists(global.view1Surf))draw_surface(global.view1Surf, view_xview[1], view_yview[1]);
+    if(surface_exists(global.view2Surf))draw_surface(global.view2Surf, view_xview[2], view_yview[2]);
+surface_reset_target();
+
+surface_set_target(magSurf);
+    draw_clear_alpha(c_white,0);
+    draw_sprite(spr_mag, 0, 0, 0);
+    draw_set_blend_mode_ext(bm_dest_color, bm_zero);
+    draw_surface_ext(global.roomSurface,-scale*mouse_x + 150, -scale * mouse_y + 150, scale,scale, 0, c_white, 1);
+    draw_set_blend_mode(bm_normal);
+surface_reset_target();
+
+surface_set_target(application_surface);
+    draw_surface(global.roomSurface, 0, 0);
+    draw_surface(magSurf, mouse_x-150, mouse_y-150);
+surface_reset_target();
+
+surface_set_target(global.roomSurface);
+draw_clear_alpha(c_white, 0);
+surface_reset_target();
 </string>
           </argument>
         </arguments>

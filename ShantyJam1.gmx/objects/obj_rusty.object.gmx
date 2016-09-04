@@ -43,6 +43,8 @@ if (hsp != 0 &amp;&amp; grounded){
     sprite_index = spr_rusty_run;
 }else if(grounded){
     sprite_index = spr_rusty_stand;
+}else if(key_down){
+    sprite_index = spr_rusty_drop;
 }else{
     sprite_index = spr_rusty_fly;
 }

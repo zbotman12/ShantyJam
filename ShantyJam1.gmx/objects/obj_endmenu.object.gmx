@@ -25,14 +25,17 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>menu[0] = "PLAY";
+            <string>menu[0] = "PLAY AGAIN";
 menu[1] = "CREDITS";
 menu[2] = "QUIT";
-alpha = 1;
+
 space = 65;
 mpos = 0;
-angle = 0;
 
+delayGuy = 60;
+
+angle = 0;
+goDown = false;
 goToLevel = false;
 
 right = false;
@@ -91,8 +94,8 @@ delayTime = 8;
             <kind>1</kind>
             <string>get_input();
 
-if(audio_is_playing(kabukiYoo)){
-alpha = 0;
+if(delayGuy &gt; 0 || audio_is_playing(kabukiYoo)){
+delayGuy--;
 right = false;
 left = false;
 up = false;
@@ -122,15 +125,14 @@ lastDirTSLHor = 0;
 lastDirTSRVert = 0;
 lastDirTSLVert = 0;
 
-}else{
-    alpha = 1;
 }
-
 
 
 var move = 0;
 var up = 0;
 var down = 0;
+
+
 
 
 if(delayTimer == 0){
@@ -170,6 +172,19 @@ if(goToLevel &amp;&amp; !audio_is_playing(kabukiYoo)){
     room_goto(room0);
 }
 
+if(angle == 20)
+{
+    goDown = true;
+}else if(angle == -20){
+    goDown = false;
+}
+
+if(goDown){
+    angle--;
+}else{
+    angle++;
+}
+
 
 </string>
           </argument>
@@ -193,10 +208,19 @@ if(goToLevel &amp;&amp; !audio_is_playing(kabukiYoo)){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_halign(fa_left);
+            <string>draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 draw_set_font(score_font);
 draw_set_color(c_red);
+
+if(room == rusty){
+    draw_text_transformed(room_width - room_width/4 - 200, 250,"RUSTY", 3, 3, angle)
+    draw_text_transformed(room_width - room_width/4+ 300, 250,"WINS!!", 3, 3, -angle)
+}else if (room == crusty){
+    draw_text_transformed(room_width - room_width/4 - 250, 250,"CRUSTY", 3, 3, angle)
+    draw_text_transformed(room_width - room_width/4 + 300, 250,"WINS!!", 3, 3, -angle)
+}
+draw_set_halign(fa_left);
 
 var m;
 for (m =0; m &lt; array_length_1d(menu); m += 1)
@@ -210,7 +234,7 @@ for (m =0; m &lt; array_length_1d(menu); m += 1)
     }
 }
 
-draw_sprite_ext(sprite_index, 0, x + 16, y + mpos * space, 1, 1, 0, c_white, alpha);
+draw_sprite_ext(sprite_index, 0, x + 16, y + mpos * space, 1, 1, 0, c_white, 1 - delayGuy/60);
 </string>
           </argument>
         </arguments>

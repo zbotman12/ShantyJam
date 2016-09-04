@@ -48,7 +48,6 @@ view_hview[1] = 1920/4 * 2;
 view_wview[1] = 1080/3 * 2;
 view_hborder[1] = 1920;
 view_vborder[1] = 1080;
-
 view_hport[2] =  1920 - 1920/4;
 view_wport[2] = 152;
 view_yport[2] = 0;
@@ -182,42 +181,6 @@ for(var yy = 0; yy &lt; height; yy++){
             <kind>1</kind>
             <string>///Destroy the grids
 ds_grid_destroy(global.grid);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if(view_current == 2){
-    draw_set_alpha(0.6);
-    draw_rectangle_colour(
-                            0, 
-                            0, 
-                            room_width,
-                            room_height,
-                            c_orange,
-                            c_red,
-                            c_orange,
-                            c_red,
-                            false);
-    draw_set_alpha(1);
-}
 </string>
           </argument>
         </arguments>

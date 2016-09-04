@@ -26,13 +26,14 @@ var thumbstickReleaseRHor = 0;
 var thumbstickReleaseLVert = 0;
 var thumbstickReleaseRVert = 0;
 
-if (gamepad_is_connected(0)) //Maybe we want any controller, 0 - 3, to work, just a thought.
+if (gamepad_is_connected(0) || gamepad_is_connected(1)) //Maybe we want any controller, 0 - 3, to work, just a thought.
 { 
     gamepad_set_axis_deadzone(0, 0.5);
-    gamepadLeftHor = sign(gamepad_axis_value(0, gp_axislh));
-    gamepadLeftVert = sign(gamepad_axis_value(0, gp_axislv));
-    gamepadRightHor = sign(gamepad_axis_value(0, gp_axisrh));
-    gamepadRightVert = sign(gamepad_axis_value(0, gp_axisrv));
+    gamepad_set_axis_deadzone(1, 0.5);
+    gamepadLeftHor = sign(gamepad_axis_value(0, gp_axislh)) + sign(gamepad_axis_value(1, gp_axislh));
+    gamepadLeftVert = sign(gamepad_axis_value(0, gp_axislv)) + sign(gamepad_axis_value(1, gp_axislv));
+    gamepadRightHor = sign(gamepad_axis_value(0, gp_axisrh)) + sign(gamepad_axis_value(1, gp_axisrh));
+    gamepadRightVert = sign(gamepad_axis_value(0, gp_axisrv)) + sign(gamepad_axis_value(1, gp_axisrv));
     //Thumbstick Directional Release inputs
     //If the the direction pressed last frame does not equal the direction
     //Pressed this frame on any given axis, then we know that the axis
@@ -47,29 +48,30 @@ if (gamepad_is_connected(0)) //Maybe we want any controller, 0 - 3, to work, jus
     lastDirTSLVert = gamepadLeftVert;
     //FACEBUTTONS 
     gamepadAReleased = gamepad_button_check_released(0, gp_face1);
-    gamepadAPressed = gamepad_button_check_pressed(0, gp_face1);
-    gamepadBPressed = gamepad_button_check_pressed(0, gp_face2);
-    gamepadXPressed = gamepad_button_check_pressed(0, gp_face3);
-    gamepadYPressed = gamepad_button_check_pressed(0, gp_face4);
-    gamepadA = gamepad_button_check(0, gp_face1);
-    gamepadB = gamepad_button_check(0, gp_face2);
-    gamepadX = gamepad_button_check(0, gp_face3);
-    gamepadY = gamepad_button_check(0, gp_face4);
+    gamepadAPressed = gamepad_button_check_pressed(0, gp_face1) || gamepad_button_check_pressed(1, gp_face1);
+    gamepadBPressed = gamepad_button_check_pressed(0, gp_face2) || gamepad_button_check_pressed(1, gp_face2);
+    gamepadXPressed = gamepad_button_check_pressed(0, gp_face3) || gamepad_button_check_pressed(1, gp_face3);
+    gamepadYPressed = gamepad_button_check_pressed(0, gp_face4) || gamepad_button_check_pressed(1, gp_face4);
+    gamepadA = gamepad_button_check(0, gp_face1) ||  gamepad_button_check(1, gp_face1);
+    gamepadB = gamepad_button_check(0, gp_face2) || gamepad_button_check(1, gp_face2);
+    gamepadX = gamepad_button_check(0, gp_face3) || gamepad_button_check(1, gp_face3);
+    gamepadY = gamepad_button_check(0, gp_face4) || gamepad_button_check(1, gp_face4);
 
     //DPAD
-    gamepadDpadUpReleased = gamepad_button_check_released(0, gp_padu);
-    gamepadDpadDownReleased = gamepad_button_check_released(0, gp_padd);
-    gamepadDpadLeftReleased = gamepad_button_check_released(0, gp_padl);
-    gamepadDpadRightReleased = gamepad_button_check_released(0, gp_padr);
-    gamepadDpadUp = gamepad_button_check(0, gp_padu);
-    gamepadDpadDown = gamepad_button_check(0, gp_padd);
-    gamepadDpadLeft = gamepad_button_check(0, gp_padl);
-    gamepadDpadRight = gamepad_button_check(0, gp_padr);
+    gamepadDpadUpReleased = gamepad_button_check_released(0, gp_padu) || gamepad_button_check_released(1, gp_padu);
+    gamepadDpadDownReleased = gamepad_button_check_released(0, gp_padd) || gamepad_button_check_released(1, gp_padd);
+    gamepadDpadLeftReleased = gamepad_button_check_released(0, gp_padl) ||  gamepad_button_check_released(1, gp_padl);
+    gamepadDpadRightReleased = gamepad_button_check_released(0, gp_padr) || gamepad_button_check_released(1, gp_padr);
+    gamepadDpadUp = gamepad_button_check(0, gp_padu) || gamepad_button_check(1, gp_padu);
+    gamepadDpadDown = gamepad_button_check(0, gp_padd) || gamepad_button_check(1, gp_padd);
+    gamepadDpadLeft = gamepad_button_check(0, gp_padl) || gamepad_button_check(1, gp_padl);
+    gamepadDpadRight = gamepad_button_check(0, gp_padr) || gamepad_button_check(1, gp_padr);
     
-    gamepadStart = gamepad_button_check_pressed(0, gp_start);
-    gamepadLT = gamepad_button_check(0, gp_shoulderlb);
+    gamepadStart = gamepad_button_check_pressed(0, gp_start) || gamepad_button_check_pressed(1, gp_start);
+    gamepadLT = gamepad_button_check(0, gp_shoulderlb) || gamepad_button_check(1, gp_shoulderlb);
     
 }
+
     
 //Keyboard Inputs
 var keyboardMbLeft = mouse_check_button_pressed(mb_left);
