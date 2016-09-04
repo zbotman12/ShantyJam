@@ -75,7 +75,8 @@ event_inherited();
             <string>draw_self()
 draw_set_color(c_white);
 draw_set_font(score_font);
-draw_text(view_xview[0]+view_wview[0]/2,view_yview[0]+50,points);
+if (view_current == 0)
+{draw_text(view_xview[0]+view_wview[0]/2,view_yview[0]+50,points)};
 </string>
           </argument>
         </arguments>
