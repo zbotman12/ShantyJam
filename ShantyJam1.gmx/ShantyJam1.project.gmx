@@ -7,6 +7,7 @@
   <sounds name="sound">
     <sound>sound\snd_liftoff</sound>
     <sound>sound\snd_flap</sound>
+    <sound>sound\snd_bg_music</sound>
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\spr_test</sprite>
@@ -16,10 +17,13 @@
     <sprite>sprites\spr_enemy</sprite>
     <sprite>sprites\spr_rusty_stand</sprite>
     <sprite>sprites\spr_crusty</sprite>
+    <sprite>sprites\spr_rusty_run</sprite>
+    <sprite>sprites\spr_crusty_run</sprite>
+    <sprite>sprites\spr_crusty_fly</sprite>
+    <sprite>sprites\spr_rusty_fly</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_floor</background>
-    <background>background\bg_wall</background>
     <background>background\bg_rust2</background>
     <background>background\bg_rust1</background>
     <background>background\bg_clean</background>

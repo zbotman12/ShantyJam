@@ -33,6 +33,20 @@ key_down = keyboard_check(ord('S')) || (gamepad_axis_value(0,gp_axislv) &gt; 0);
 key_shift = keyboard_check_pressed(vk_lshift) || (gamepad_button_check_pressed(0,gp_shoulderrb));
 key_down_release = keyboard_check_released(ord('S')) || (gamepad_axis_value(0,gp_axislv) == 0);
 
+if(key_left == -1){
+    image_xscale = -1;
+}
+if(key_right == 1){
+    image_xscale = 1;
+}
+if (hsp != 0 &amp;&amp; grounded){
+    sprite_index = spr_rusty_run;
+}else if(grounded){
+    sprite_index = spr_rusty_stand;
+}else{
+    sprite_index = spr_rusty_fly;
+}
+
 if gamepad_is_connected(0) gamepad_set_axis_deadzone(0, .5);
 
 event_inherited();
