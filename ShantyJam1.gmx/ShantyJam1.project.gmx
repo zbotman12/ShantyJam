@@ -8,6 +8,8 @@
     <sound>sound\snd_liftoff</sound>
     <sound>sound\snd_flap</sound>
     <sound>sound\snd_bg_music</sound>
+    <sound>sound\kabukiYoo</sound>
+    <sound>sound\titleTheme</sound>
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\spr_test</sprite>
@@ -29,6 +31,9 @@
     <background>background\bg_rust1</background>
     <background>background\bg_clean</background>
     <background>background\bg_rust3</background>
+    <background>background\background5</background>
+    <background>background\background6</background>
+    <background>background\background7</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -36,7 +41,8 @@
     <script>scripts\grid_place_meeting.gml</script>
     <script>scripts\get_path_to_player.gml</script>
     <script>scripts\scr_smooth_map.gml</script>
-    <script>scripts\scr_flood_fill.gml</script>
+    <script>scripts\scr_menu.gml</script>
+    <script>scripts\get_input.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\score_font</font>
@@ -49,8 +55,10 @@
     <object>objects\obj_crusty</object>
     <object>objects\obj_soundManager</object>
     <object>objects\obj_wall</object>
+    <object>objects\obj_menu</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\room1</room>
     <room>rooms\room0</room>
   </rooms>
   <help>

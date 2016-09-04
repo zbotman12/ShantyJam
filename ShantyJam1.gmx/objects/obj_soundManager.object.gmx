@@ -25,14 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/*if(obj_rusty.grounded &amp;&amp; obj_crusty.grounded){
-    if(audio_is_playing(snd_flap)){
-        audio_stop_sound(snd_flap);
-    }else if(!audio_is_playing(snd_flap)){
-        audio_sound_pitch(snd_flap, random_range(0.5,1));
-        audio_play_sound(snd_flap, 0, 1);
-    }
-}*/
+            <string>if(!audio_is_playing(snd_bg_music)){
+    audio_play_sound(snd_bg_music, 1, 1);
+}
 </string>
           </argument>
         </arguments>
