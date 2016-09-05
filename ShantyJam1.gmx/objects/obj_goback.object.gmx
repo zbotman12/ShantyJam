@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>goDown = false;
 alpha = 1;
+roomStarted = false;
 </string>
           </argument>
         </arguments>
@@ -49,18 +50,8 @@ alpha = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(keyboard_check(vk_right) || (gamepad_axis_value(1,gp_axislh) &gt; 0)
-|| (keyboard_check(vk_left) || (gamepad_axis_value(1,gp_axislh) &lt; 0))
-|| keyboard_check_pressed(vk_up) || (gamepad_button_check_pressed(1,gp_face1))
-|| keyboard_check(vk_down) || (gamepad_axis_value(1,gp_axislv) &gt; 0)
-|| keyboard_check_pressed(vk_rshift) || (gamepad_button_check_pressed(1,gp_shoulderrb))
-|| keyboard_check_released(vk_down) || (gamepad_axis_value(1,gp_axislv) == 0)
-|| keyboard_check(ord('D')) || (gamepad_axis_value(0,gp_axislh) &gt; 0)
-|| (keyboard_check(ord('A')) || (gamepad_axis_value(0,gp_axislh) &lt; 0))
-|| keyboard_check_pressed(ord('W')) || (gamepad_button_check_pressed(0,gp_face1))
-|| keyboard_check(ord('S')) || (gamepad_axis_value(0,gp_axislv) &gt; 0)
-|| keyboard_check_pressed(vk_lshift) || (gamepad_button_check_pressed(0,gp_shoulderrb))
-|| keyboard_check_released(ord('S')) || (gamepad_axis_value(0,gp_axislv) == 0)){
+            <string>if(gamepad_button_check_pressed(0,gp_face1) || gamepad_button_check_pressed(1,gp_face1) )
+{
     room_goto(room1);
 
 }
@@ -68,7 +59,7 @@ alpha = 1;
 if(alpha == 1)
 {
     goDown = true;
-}else if(angle == 0){
+}else if(alpha == 0){
     goDown = false;
 }
 
@@ -81,6 +72,29 @@ if(goDown){
 
 
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>roomStarted = true;
 </string>
           </argument>
         </arguments>
